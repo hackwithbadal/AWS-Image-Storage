@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        .image-container {
+            padding: 15px;
+            margin: 200px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-container">
+        <h1>File Upload Successfull</h1>
+        <img src='<%= data.ImageURL %>'' alt=' Image Loading...'>
+        <p>
+            <%= data.fileName %>
+        </p>
+        <p><a href='/'>Upload more...</a></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            padding: 15px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 200px;
+            height: 200px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        input[type='submit'] {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type='submit']:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello ! Welceme to my Page !</h1>
+    <form id='uploadForm' action='/upload' method='post' encType="multipart/form-data" onsubmit="return validateFile();">
+        <input type="file" id="uploadImage" name="uploadImg" required accept="image/png, image/jpeg"/>
+        <input type='submit' value='Upload !' />
+    </form>
+    <div style="display: flex;flex-wrap: wrap;">
+        <% UploadedDocuments.forEach((image, index)=> { %>
+            <div class="image-container">
+                <p>
+                    <%= image.fileName %>
+                </p>
+                <img src='<%= image.ImageURL %>'' alt=' Image <%=index + 1 %> Loading....'>
+            </div>
+            <% }); %>
+    </div>
+    <script type="text/javascript">
+        function validateFile() {
+            var fileInput = document.getElementById('uploadImage');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Please upload only image files (jpg, jpeg, png, gif).');
+                fileInput.value = '';
+                return false;
+            } else {
+                // Your other validation logic if needed
+                return true;
+            }
+        }
+    </script>
+</body>
+
+</html>
